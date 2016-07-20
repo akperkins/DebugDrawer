@@ -37,6 +37,7 @@ import jp.wasabeef.takt.Takt;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import timber.log.Timber;
+import workstop.debugdrawer_okhttp3_log.OkHttp3LogModule;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -84,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
             new ScalpelModule(this),
             new TimberModule(),
             new OkHttp3Module(okHttpClient),
+            new OkHttp3LogModule(this),
             new DeviceModule(this),
             new BuildModule(this),
             new NetworkModule(this),
@@ -170,7 +172,9 @@ public class MainActivity extends AppCompatActivity {
         File cacheDir = new File(app.getCacheDir(), "okhttp3-cache");
         Cache cache = new Cache(cacheDir, DISK_CACHE_SIZE);
 
-        return new OkHttpClient.Builder()
+        OkHttpClient.Builder builder = new OkHttpClient.Builder();
+        OkHttp3LogModule.configureNetworkInterceptor(builder);
+        return builder
             .cache(cache)
             .readTimeout(10, TimeUnit.SECONDS)
             .writeTimeout(10, TimeUnit.SECONDS)

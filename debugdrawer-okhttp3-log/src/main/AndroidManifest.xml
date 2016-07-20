@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="workstop.debugdrawer_okhttp3_log">
+
+    <application>
+
+        <activity android:name=".DebugLogActivity"/>
+
+    </application>
+
+</manifest>

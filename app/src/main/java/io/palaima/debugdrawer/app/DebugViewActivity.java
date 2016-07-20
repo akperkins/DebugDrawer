@@ -34,6 +34,7 @@ import jp.wasabeef.takt.Takt;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 import timber.log.Timber;
+import workstop.debugdrawer_okhttp3_log.OkHttp3LogModule;
 
 public class DebugViewActivity extends AppCompatActivity {
 
@@ -93,6 +94,7 @@ public class DebugViewActivity extends AppCompatActivity {
             new ScalpelModule(this),
             new TimberModule(),
             new OkHttp3Module(okHttpClient),
+            new OkHttp3LogModule(this),
             new DeviceModule(this),
             new BuildModule(this),
             new NetworkModule(this),
